@@ -1,0 +1,37 @@
+---
+layout:       default
+image_folder: /sketches/
+sort_by:      modified_time
+---
+<ul class="sketch-list">
+  {% assign imgs = (site.static_files | sort: page.sort_by) %}
+  {% for img in imgs reversed %}
+    {% if img.path contains page.image_folder and img.path contains '_large.png' %}
+      {% assign base_path    = img.path  | remove: '_large.png'  %}
+      {% assign large_image  = base_path | append: '_large.png'  %}
+      {% assign medium_image = base_path | append: '_medium.png' %}
+      {% assign small_image  = base_path | append: '_small.png'  %}
+      {% assign tiny_image   = base_path | append: '_tiny.b64'   %}
+
+      {% assign image_name = base_path | remove: page.image_folder | replace: '/', ' ' %}
+
+      <li class="sketch-item">
+        <a class="sketch-link"
+           href=".{{ large_image }}"
+        >
+          <img class="sketch-image"
+            src="data:image/png;base64,{% include_relative {{ tiny_image }} %}"
+            data-small=".{{ small_image }}"
+            data-medium=".{{ medium_image }}"
+            data-large=".{{ large_image }}"
+            data-srcset="{ small } 256w, { medium } 512w"
+            sizes="(min-width: 480px) 33vw, (min-width: 960px) 25vw, (min-width: 1280px) 20vw, 50vw"
+            alt="Sketch {{ image_name }}"
+          />
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<script async src="./assets/script.js"></script>

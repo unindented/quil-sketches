@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: "en" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ site.title }}</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" />
+  </head>
+  <body>
+    <header class="sketches-header">
+      <h1 class="sketches-header-title">
+        {{ site.title }}
+      </h1>
+      <a class="sketches-header-link"
+        href="https://github.com/unindented/quil-sketches"
+      >
+        <img class="sketches-header-logo"
+          src="./assets/github.svg"
+          alt="GitHub repository"
+        />
+      </a>
+    </header>
+    <main>
+      {{ content }}
+    </main>
+  </body>
+</html>
